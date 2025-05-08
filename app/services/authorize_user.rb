@@ -1,4 +1,5 @@
 class AuthorizeUser < ApplicationService
+  prepend SimpleCommand
   def initialize(headers = {})
     @headers = headers
   end
@@ -23,7 +24,7 @@ class AuthorizeUser < ApplicationService
     if headers["Authorization"].present?
       return headers["Authorization"].split(" ").last
     else
-      errors.add(:token, "Tokens Invalid")
+      errors.add(:token, "missen token")
     end
     nil
   end

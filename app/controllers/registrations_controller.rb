@@ -4,7 +4,12 @@ class RegistrationsController < ApplicationController
     registration = RegisterUser.call(params[:name], params[:email], params[:password])
     
     if registration 
-      render json: { success: registration, status: 200, message: "successfully registered" }, status: 200
+      render json: {
+        data: ActiveModelSerializers::SerializableResource.new(registration, each_serializer: UserSerializer),
+        message: ['User created'],
+        status: 200,
+        type: 'Success'
+      }
     else
       render json: { errors: "uprocessible entity" }, status: 422
     end
