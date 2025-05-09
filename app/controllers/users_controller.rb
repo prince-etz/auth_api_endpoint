@@ -12,19 +12,17 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: { status: 200, user: user }
-    
+    render json: { status: 200, user: user } 
   rescue ActiveRecord::RecordNotFound => e
-    e.message
+    render json: { error: 'Not Found '}, status: :not_found
   end
 
   def update_details
     user = User.find(params[:id])
     user.update(user_params)
     render json: { status: 200, message: "successfully updated", user: user}
-  
   rescue ActiveRecord::RecordInvalid => e 
-    e.message
+    render json: { error: "Unable to update"}, status: :unprocessible_entity
   end
 
   def logout
