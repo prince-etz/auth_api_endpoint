@@ -10,8 +10,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    render json: { status: 200, user: user }
+    
+  rescue ActiveRecord::RecordNotFound => e
+    e.message
+  end
+
+  def update_details
+    user = User.find(params[:id])
+    user.update(user_params)
+    render json: { status: 200, message: "successfully updated", user: user}
+  
+  rescue ActiveRecord::RecordInvalid => e 
+    e.message
+  end
+
   def logout
     render json: { message: "Logged out successfully" }, status: :ok
+  end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
   end
 end
   
