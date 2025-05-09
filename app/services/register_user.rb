@@ -19,7 +19,7 @@ class RegisterUser < ApplicationService
       email: email,
       password: password
     )
-    rescue ActiveRecord::RecordInvalid => e 
+    rescue ActiveRecord::RecordNotUnique => e 
       e.message
   end
 end
