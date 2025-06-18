@@ -55,4 +55,4 @@ gem "jwt", "~> 2.10"
 
 gem "shutup", "~> 0.1.2"
 
-gem "rubocop", "~> 1.75"
+gem "rubocop", "~> 1.76"
