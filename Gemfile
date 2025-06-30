@@ -51,7 +51,7 @@ end
 
 gem "simple_command", "~> 1.0"
 
-gem "jwt", "~> 2.10"
+gem "jwt", "~> 3.1"
 
 gem "shutup", "~> 0.1.2"
 
